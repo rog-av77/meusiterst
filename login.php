@@ -6,8 +6,20 @@ include "conecta.php";
 $cpf = $_POST['cpf'];
 $senha = $_POST['senha'];
 
-// Consulta SQL insegura
-$sql = "SELECT * FROM aluno WHERE cpf = '$cpf' AND senha = '$senha'";
+$sql = "SELECT * FROM aluno 
+  WHERE cpf = :cpf AND senha = :senha";
+
+try {
+    $stmt = $conexao->prepare($sql);
+
+    $stmt->bindParam(':cpf', $cpf);
+    $stmt->bindParam(':senha', $senha);
+
+    $stmt->execute();
+
+    if ( $linha = $stmt->fetch() ) {
+        //restante do código...
+
 
 try {
     // Executando a consulta
