@@ -10,18 +10,6 @@ $sql = "SELECT * FROM aluno
   WHERE cpf = :cpf AND senha = :senha";
 
 try {
-    $stmt = $conexao->prepare($sql);
-
-    $stmt->bindParam(':cpf', $cpf);
-    $stmt->bindParam(':senha', $senha);
-
-    $stmt->execute();
-
-    if ( $linha = $stmt->fetch() ) {
-        //restante do código...
-
-
-try {
     // Executando a consulta
     $stmt = $conexao->prepare($sql);
 
